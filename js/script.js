@@ -1,4 +1,6 @@
-function testWebP(callback) {
+window.addEventListener('DOMContentLoaded', () => {
+
+	function testWebP(callback) {
 
 	var webP = new Image();
 	webP.onload = webP.onerror = function () {
@@ -15,7 +17,7 @@ testWebP(function (support) {
 		document.querySelector('body').classList.add('no-webp');
 	}
 });
-window.addEventListener('DOMContentLoaded', () => {
+	
 	const tabs = document.querySelectorAll('.tabheader__item'),
 		tabsContent = document.querySelectorAll('.tabcontent'),
 		tabsParent = document.querySelector('.tabheader__items');
@@ -51,8 +53,8 @@ window.addEventListener('DOMContentLoaded', () => {
 			});
 		}
 	});
-});
-window.addEventListener('DOMContentLoaded', () => {
+
+	
 
 const deadline = '2021-03-25';
 
@@ -105,5 +107,50 @@ function setClock(selector, endtime) {
 }
 
 setClock('.timer', deadline);
+
+
+	const modalTrigger = document.querySelectorAll('[data-modal]'),
+	modal = document.querySelector('.modal'),
+	modalCloseBtn = document.querySelector('[data-close]');
+
+function openModal() {
+	modal.classList.toggle('show');
+	document.body.style.overflow = 'hidden';
+}
+
+modalTrigger.forEach((btn) => {
+	btn.addEventListener('click', openModal);
+});
+
+
+function closeModal() {
+	modal.classList.toggle('show');
+	document.body.style.overflow = '';
+}
+
+modalCloseBtn.addEventListener('click', closeModal);
+
+modal.addEventListener('click', (e) => {
+	if (e.target === modal) {
+		closeModal();
+	}
+});
+
+document.addEventListener('keydown', (e) => {
+	if (e.code === "Escape" && modal.classList.contains('show')) {
+		closeModal();
+	}
+});
+
+function showModalByScroll() {
+	if ((window.pageYOffset + document.documentElement.clientHeight) >= document.documentElement.scrollHeight) {
+		openModal();
+		window.removeEventListener('scroll', showModalByScroll);
+	}
+}
+
+window.addEventListener('scroll', showModalByScroll);
+
+
 
 });
