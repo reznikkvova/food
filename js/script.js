@@ -56,7 +56,7 @@ testWebP(function (support) {
 
 	
 
-const deadline = '2021-03-25';
+const deadline = '2021-08-25';
 
 function getTimeRemaining(endtime) {
 	const t = Date.parse(endtime) - Date.parse(new Date()),
